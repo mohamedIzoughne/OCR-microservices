@@ -1,0 +1,37 @@
+# Environments
+.venv
+venv/
+env/
+ENV/
+.env
+
+# Python Cache & Byte-compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+
+# AI/ML & OCR
+*.onnx
+models/
+*.pt
+*.pth
+*.h5
+
+# Output files
+*_annotated.png
+*_raw_output.txt
+*_parsed_output.json
+*_final_output.json
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Java & Spring Boot
+*.class
+*.log
+target/
+!.mvn/wrapper/maven-wrapper.jar
+log/

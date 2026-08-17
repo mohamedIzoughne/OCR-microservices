@@ -1,0 +1,180 @@
+services:
+
+  # =========================================================
+  # KAFKA - KRaft mode
+  # =========================================================
+  kafka:
+    image: apache/kafka:latest
+
+    container_name: kafka
+
+    restart: unless-stopped
+
+    ports:
+      - "9092:9092"
+
+    environment:
+
+      # -------------------------------------------------------
+      # KRaft
+      # -------------------------------------------------------
+      KAFKA_NODE_ID: 1
+
+      KAFKA_PROCESS_ROLES: broker,controller
+
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:19093
+
+      # -------------------------------------------------------
+      # Listeners
+      # -------------------------------------------------------
+      KAFKA_LISTENERS: >-
+        PLAINTEXT://0.0.0.0:19092, CONTROLLER://0.0.0.0:19093, PLAINTEXT_HOST://0.0.0.0:9092
+
+      KAFKA_ADVERTISED_LISTENERS: >-
+        PLAINTEXT://kafka:19092, PLAINTEXT_HOST://localhost:9092
+
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: >-
+        CONTROLLER:PLAINTEXT, PLAINTEXT:PLAINTEXT, PLAINTEXT_HOST:PLAINTEXT
+
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+
+      # -------------------------------------------------------
+      # Single-node Kafka configuration
+      # -------------------------------------------------------
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+
+      # -------------------------------------------------------
+      # KRaft Cluster ID
+      # -------------------------------------------------------
+      CLUSTER_ID: "4L6g3nShT-eMCtK--X86sw"
+
+    healthcheck:
+      test: [ "CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092" ]
+
+      interval: 10s
+
+      timeout: 30s
+
+      retries: 10
+
+      start_period: 20s
+
+    networks:
+      - alphadata-network
+
+  # =========================================================
+  # KAFKA INIT (Create topics)
+  # =========================================================
+  init-kafka:
+    image: apache/kafka:latest
+    container_name: init-kafka
+    restart: "no"
+    depends_on:
+      kafka:
+        condition: service_healthy
+    networks:
+      - alphadata-network
+    command: >
+      bash -c "
+        echo 'Creating topics...' &&
+        /opt/kafka/bin/kafka-topics.sh --create --if-not-exists --topic ocr_image_requests --bootstrap-server kafka:19092 --partitions 1 --replication-factor 1 &&
+        /opt/kafka/bin/kafka-topics.sh --create --if-not-exists --topic ocr_parsed_results --bootstrap-server kafka:19092 --partitions 1 --replication-factor 1 &&
+        echo 'Topics created successfully!'
+      "
+
+  # =========================================================
+  # KAFKA UI
+  # =========================================================
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+
+    container_name: kafka-ui
+
+    restart: unless-stopped
+
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+    ports:
+      - "8080:8080"
+
+    environment:
+
+      DYNAMIC_CONFIG_ENABLED: "true"
+
+      KAFKA_CLUSTERS_0_NAME: local
+
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:19092
+
+    networks:
+      - alphadata-network
+  # =========================================================
+  # OCR SERVICE
+  # =========================================================
+  # ocr-service:
+  #   build:
+  #     context: ./ocr-service
+  #     dockerfile: Dockerfile
+
+  #   container_name: ocr-service
+
+  #   restart: unless-stopped
+
+  #   ports:
+  #     - "8082:8082"
+
+  #   depends_on:
+  #     kafka:
+  #       condition: service_healthy
+
+  #   environment:
+
+  #     SERVER_PORT: 8082
+
+  #     SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:19092
+
+  #   networks:
+  #     - alphadata-network
+
+  # =========================================================
+  # RECOGNITION SERVICE - KAFKA CONSUMER
+  # =========================================================
+  # recognition-service:
+  #   build:
+  #     context: ./recognition-service
+  #     dockerfile: Dockerfile
+
+  #   container_name: recognition-service
+
+  #   restart: unless-stopped
+
+  #   ports:
+  #     - "8083:8083"
+
+  #   depends_on:
+  #     kafka:
+  #       condition: service_healthy
+
+  #   environment:
+  #     SERVER_PORT: 8083
+  #     SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:19092
+
+  #   networks:
+  #     - alphadata-network
+
+  # =========================================================
+  # NETWORK
+  # =========================================================
+networks:
+
+  alphadata-network:
+    driver: bridge
