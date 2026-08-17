@@ -1,0 +1,15 @@
+{
+  "items": [
+    {
+      "quantity": "1",
+      "unit_price": "499,00",
+      "total_price": "499,00",
+      "description": "APPLE MACBOOK AIR PUCE M3 16G0RAM/ 512G0 SSD - MINUIT"
+    }
+  ],
+  "subtotal": "499.00",
+  "tax": null,
+  "total": null,
+  "currency": "DH",
+  "time_of_output": "2026-08-17T12:09:27.171484"
+}

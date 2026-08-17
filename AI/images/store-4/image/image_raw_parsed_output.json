@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "quantity": "1",
+      "unit_price": "399,00",
+      "total_price": "399,00",
+      "description": "CASQUE SANS FIL SONY WH-10OOXM5 \u00c0 R\u00c9DUCTION DE BRUIT (NOIR)"
+    },
+    {
+      "quantity": "2",
+      "unit_price": "99,50",
+      "total_price": "179,10",
+      "description": "SOURIS LOGITECH MX MASTER 3S HAUTE PR\u00c9CISIONSANS FIL - GRAPHITE"
+    },
+    {
+      "quantity": "1",
+      "unit_price": "89,99",
+      "total_price": "89,99",
+      "description": "BATTERIE EXTERNE ANKER POWERCORE 24000MAh 3 PORTS RAPIDES"
+    }
+  ],
+  "subtotal": "556,74",
+  "tax": "111,35",
+  "total": "668, 09",
+  "currency": "DH",
+  "time_of_output": "2026-08-17T12:09:15.587357"
+}

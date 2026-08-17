@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "description": "Fast Wall Charger 65W",
+      "quantity": "1",
+      "unit_price": "32.00",
+      "total_price": "32.00"
+    },
+    {
+      "description": "BraidedLightningCable",
+      "quantity": "2",
+      "unit_price": "11.50",
+      "total_price": "23.00"
+    },
+    {
+      "description": "Microfiber Cloth",
+      "quantity": "1",
+      "unit_price": "6.50",
+      "total_price": "6.50"
+    },
+    {
+      "description": "Tempered Glass Guard",
+      "quantity": "2",
+      "unit_price": "9.00",
+      "total_price": "18.00"
+    },
+    {
+      "description": "Stylus Pen Capacitive",
+      "quantity": "1",
+      "unit_price": "15.00",
+      "total_price": "15.00"
+    }
+  ],
+  "subtotal": "94.50",
+  "tax": "18.90",
+  "total": "113.40",
+  "time_of_output": "2026-08-12T11:51:00.754623"
+}

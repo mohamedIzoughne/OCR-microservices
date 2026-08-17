@@ -1,0 +1,27 @@
+{
+  "items": [
+    {
+      "quantity": "1",
+      "unit_price": "580,00",
+      "total_price": "580,00",
+      "description": "\u00c9CRAN DELL ULTRA SHARP 27\" \u00c9CRAN 4K HUB USB-C [U2723QE]"
+    },
+    {
+      "quantity": "1",
+      "unit_price": "85,00",
+      "total_price": "85,00",
+      "description": "ERGONOMIQUE DOUBLE \u00c9CRAN BRAS SUPPORT DE BUREAU \u00c0 RESSORT (ROBUSTE)"
+    },
+    {
+      "quantity": null,
+      "unit_price": null,
+      "total_price": null,
+      "description": "C\u00c2BLE HDMI 2.1 HAUTE VITESSE C\u00c2BLE TRESS\u00c9 8K@60Hz (3 M\u00c8TRES)"
+    }
+  ],
+  "subtotal": null,
+  "tax": null,
+  "total": null,
+  "currency": "DH",
+  "time_of_output": "2026-08-17T12:09:21.226932"
+}

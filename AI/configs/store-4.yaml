@@ -1,0 +1,41 @@
+lang: 'fr'
+y_threshold: 25
+save_annotated_image: true
+
+fields:
+  subtotal:
+    regex: 'TOTAL\s*H\.?T\.?\s*.*?([0-9]+,[0-9]{2})'
+    split_trigger: 'TOTAL'
+    split_direction: 'up'
+    split_regex: '([0-9]+,[0-9]{2})'
+    group: 1
+  tax:
+    regex: 'TVA.*?([0-9]+,\s*[0-9]{2})'
+    split_trigger: 'TVA'
+    split_direction: 'up'
+    split_regex: '([0-9]+,\s*[0-9]{2})'
+    group: 1
+  total:
+    regex: 'PAYER.*?([0-9]+,\s*[0-9]{2})'
+    split_trigger: 'PAYER'
+    split_regex: '([0-9]+,\s*[0-9]{2})'
+    group: 1
+
+items_section:
+  start_trigger: 'DATE\s*:'
+  end_trigger: 'TOTAL'
+
+currency: 'DH'
+
+item_patterns:
+  # Line with QTE and Prices
+  - regex: '^QTE:\s*(?P<quantity>\d+)\s*[x×X]\s*(?P<unit_price>[0-9\.]+,\s*[0-9]{2})(?:\s*DH)?(?:\s*\[.*?\])?(?:\s+(?P<total_price>[0-9\.]+,\s*[0-9]{2}))?$'
+  
+  # Alternate line format (e.g. 1 UNT x 580,00)
+  - regex: '^(?P<quantity>\d+)\s*UNT\s*[x×X]\s*(?P<unit_price>[0-9\.]+,\s*[0-9]{2})(?:\s*DH)?(?:\s*\[.*?\])?(?:\s+(?P<total_price>[0-9\.]+,\s*[0-9]{2}))?$'
+  
+  # Alternate line format (e.g. 1 PCS 499,00)
+  - regex: '^(?P<quantity>\d+)\s*PCS\s*(?P<unit_price>[0-9\.]+,\s*[0-9]{2})(?:\s*DH)?(?:\s*\[.*?\])?(?:\s+(?P<total_price>[0-9\.]+,\s*[0-9]{2}))?$'
+
+  # Description line (Strips optional leading indices like "1. ", "2) ", etc.) Requires at least one letter and cannot be just a price/currency.
+  - regex: '^(?:\d+[\.\)]\s*)?(?![\d\s\,\.]+(?:DH|MAD|USD|EUR|UNT|PCS|\$|€)?$)(?P<description>[A-Za-z0-9\s\-\(\)\"\/\[\]\.\:\,\%\@\_À-ÿ]*[A-Za-zÀ-ÿ][A-Za-z0-9\s\-\(\)\"\/\[\]\.\:\,\%\@\_À-ÿ]*)$'

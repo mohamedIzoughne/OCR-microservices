@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "quantity": "1",
+      "unit_price": "29.99",
+      "total_price": "29.99",
+      "description": "Wireless Ergonomic Mouse"
+    },
+    {
+      "quantity": "1",
+      "unit_price": "89.50",
+      "total_price": "89.50",
+      "description": "Mechanical Keyboard"
+    },
+    {
+      "quantity": "1",
+      "unit_price": "22.49",
+      "total_price": "22.49",
+      "description": "Memory Card 128GB"
+    },
+    {
+      "quantity": "1",
+      "unit_price": "11.99",
+      "total_price": "11.99",
+      "description": "Screen CleaningKit"
+    }
+  ],
+  "subtotal": "169.97",
+  "tax": "13.60",
+  "total": "183.57",
+  "time_of_output": "2026-08-11T15:10:25.418723"
+}

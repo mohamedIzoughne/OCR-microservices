@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "quantity": "1",
+      "unit_price": "219.00",
+      "total_price": "219.00",
+      "description": "27-inch IPSMonitor"
+    },
+    {
+      "quantity": "1",
+      "unit_price": "45.00",
+      "total_price": "45.00",
+      "description": "Monitor Desk Mount"
+    }
+  ],
+  "total": "285.12",
+  "tax": "21.12",
+  "time_of_output": "2026-08-11T14:44:56.792754"
+}

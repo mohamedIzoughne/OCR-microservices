@@ -1,0 +1,39 @@
+{
+  "items": [
+    {
+      "quantity": "1",
+      "unit_price": "649,00",
+      "total_price": "649,00",
+      "description": "TABLETTE SAMSUNG GALAXY TAB S9 11\"128G0 WIFI BEIGE[SM-X710]"
+    },
+    {
+      "quantity": "1",
+      "unit_price": "79,00",
+      "total_price": "79,00",
+      "description": "STYLET SAMSUNG S-PEN PRO FINITION NOIR MAT"
+    },
+    {
+      "quantity": "1",
+      "unit_price": "139,99",
+      "total_price": "139,99",
+      "description": "CLAVIER BOOK COVER SLIM POUR TAB S9 (AZERTY)"
+    },
+    {
+      "quantity": "2",
+      "unit_price": "29,50",
+      "total_price": "59,00",
+      "description": "CHARGEUR SECTEUR DUAL USB-C 45WCHARGEULTRARAPIDE"
+    },
+    {
+      "quantity": "1",
+      "unit_price": "19,99",
+      "total_price": "19,99",
+      "description": "FILM DEPROTECTION \u00c9CRAN ANTI-REFLET PACK DE 2"
+    }
+  ],
+  "subtotal": "789,15",
+  "tax": "157,83",
+  "total": null,
+  "currency": "DH",
+  "time_of_output": "2026-08-17T14:44:58.870637"
+}
